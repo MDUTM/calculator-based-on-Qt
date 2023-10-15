@@ -24,12 +24,37 @@ void MainWidget::on_btn_point_clicked()
     ui->lineEdit->setText(val);
 }
 
+void removeZero(char *str)
+{
+    int len = strlen(str);
+    int dotPos = -1;
+    for (int i = 0; i < len; i++)
+        if (str[i] == '.')
+        {
+            dotPos = i;
+            break;
+        }
+
+    if (dotPos != -1)
+        for (int i = len - 1; i >= dotPos; i--)
+        {
+            if (str[i] == '0')
+                str[i] = '\0';
+            else if (str[i] == '.')
+            {
+                str[i] = '\0';
+                break;
+            }
+            else
+                break;
+        }
+}
+
 void MainWidget::on_btn_ret_clicked()
-{    
+{
     qsizetype len = val.length();
     char *buf = new char[len]();
     strcpy(buf, val.toStdString().data());
-    qDebug() << buf;
     char *opera = nullptr;
     double retVal;
 
@@ -40,40 +65,48 @@ void MainWidget::on_btn_ret_clicked()
         double valB = atof(opera + 1);
         retVal = valA + valB;
     }
-    if (opera = strstr(buf, "-"))
+    else if (opera = strstr(buf, "-"))
     {
         double valA = atof(buf);
         double valB = atof(opera + 1);
         retVal = valA - valB;
     }
-    if (opera = strstr(buf, "*"))
+    else if (opera = strstr(buf, "*"))
     {
         double valA = atof(buf);
         double valB = atof(opera + 1);
         retVal = valA * valB;
     }
-    if (opera = strstr(buf, "/"))
+    else if (opera = strstr(buf, "/"))
     {
         double valA = atof(buf);
         double valB = atof(opera + 1);
         retVal = valA / valB;
     }
-    if (opera = strstr(buf, "%"))
+    else if (opera = strstr(buf, "%"))
     {
         int valA = atoi(buf);
         int valB = atoi(opera + 1);
-        retVal = (valA % valB); 
+        retVal = (valA % valB);
     }
-    if (opera = strstr(buf, "^"))
+    else if (opera = strstr(buf, "^"))
     {
         double valA = atof(buf);
         double valB = atof(opera + 1);
         retVal = pow(valA, valB);
     }
-    qDebug() << retVal;
+    else
+    {
+        delete[] buf;
+        return;
+    }
+    ui->label->setText(buf);
     memset(buf, 0, len);
     sprintf(buf, "%lf", retVal);
-    ui->lineEdit->setText(buf);
+    removeZero(buf);
+    val = buf;
+
+    ui->lineEdit->setText(val);
     delete[] buf;
 }
 
@@ -176,5 +209,7 @@ void MainWidget::on_btn_div_clicked()
 void MainWidget::on_btn_clear_clicked()
 {
     val.clear();
+    ui->lineEdit->setPlaceholderText("请输入值");
     ui->lineEdit->setText(val);
+    ui->label->setText("");
 }
