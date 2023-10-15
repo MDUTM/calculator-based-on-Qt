@@ -100,6 +100,26 @@ void MainWidget::on_btn_ret_clicked()
         delete[] buf;
         return;
     }
+
+    // 只做两个数的运算
+    {
+        int count = 0;
+        for (int i = 0; i < strlen(buf); i++)
+        {
+            if (buf[i] == '+' || buf[i] == '-'
+                || buf[i] == '*' || buf[i] == '/'
+                || buf[i] == '%' || buf[i] == '^')
+                count++;
+            if (count == 2)
+            {
+                memset(buf + i, 0, len - i);
+                break;
+            }
+        }
+    }
+
+    //
+
     ui->label->setText(buf);
     memset(buf, 0, len);
     sprintf(buf, "%lf", retVal);
