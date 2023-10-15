@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <string>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWidget; }
 QT_END_NAMESPACE
@@ -16,8 +18,6 @@ public:
     ~MainWidget();
 
 private slots:
-    void on_btn_1_clicked();
-
     void on_num_0_clicked();
 
     void on_btn_point_clicked();
@@ -52,11 +52,15 @@ private slots:
 
     void on_btn_mul_clicked();
 
-    void on_btn_clear_clicked();
-
     void on_btn_del_clicked();
+
+    void on_btn_div_clicked();
+
+    void on_btn_clear_clicked();
 
 private:
     Ui::MainWidget *ui;
-};
+
+    QString val;
+ };
 #endif // MAINWIDGET_H
