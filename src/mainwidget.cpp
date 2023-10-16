@@ -152,20 +152,13 @@ void MainWidget::on_num_3_clicked()
 
 void MainWidget::on_btn_add_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (isdigit(buf[len]))
-        val += "+";
-    // else
-    // {
-    //     val = val.remove(val.length() - 1, 1);
-    //     val += "+";
-    // }
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
+
+    val += "+";
 
     ui->lineEdit->setText(val);
-
-    // delete[] buf;
 }
 
 void MainWidget::on_num_4_clicked()
@@ -188,15 +181,12 @@ void MainWidget::on_num_6_clicked()
 
 void MainWidget::on_btn_sub_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (!isdigit(buf[len]))
-    //     val = val.remove(val.length() - 1, 1);
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
 
     val += "-";
     ui->lineEdit->setText(val);
-    // delete[] buf;
 }
 
 void MainWidget::on_num_7_clicked()
@@ -219,41 +209,32 @@ void MainWidget::on_num_9_clicked()
 
 void MainWidget::on_btn_pow_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (!isdigit(buf[len]))
-    //     val = val.remove(val.length() - 1, 1);
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
 
     val += "^";
     ui->lineEdit->setText(val);
-    // delete[] buf;
 }
 
 void MainWidget::on_btn_mod_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (!isdigit(buf[len]))
-    //     val = val.remove(val.length() - 1, 1);
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
 
     val += "%";
     ui->lineEdit->setText(val);
-    // delete[] buf;
 }
 
 void MainWidget::on_btn_mul_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (!isdigit(buf[len]))
-    //     val = val.remove(val.length() - 1, 1);
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
 
     val += "*";
     ui->lineEdit->setText(val);
-    // delete[] buf;
 }
 
 void MainWidget::on_btn_del_clicked()
@@ -264,15 +245,12 @@ void MainWidget::on_btn_del_clicked()
 
 void MainWidget::on_btn_div_clicked()
 {
-    // qsizetype len = val.length();
-    // char *buf = new char[len]();
-    // strcpy(buf, val.toStdString().data());
-    // if (!isdigit(buf[len]))
-    //     val = val.remove(val.length() - 1, 1);
+    if (val.endsWith("+") || val.endsWith("-") || val.endsWith("/") ||
+        val.endsWith("*") || val.endsWith("^") || val.endsWith("%"))
+        val.chop(1);
 
     val += "/";
     ui->lineEdit->setText(val);
-    // delete[] buf;
 }
 
 void MainWidget::on_btn_clear_clicked()
